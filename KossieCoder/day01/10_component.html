@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <kossie-button></kossie-button>
+    </div>
+    <hr>
+    <hr>
+    <div id="app-1">
+        <kossie-button></kossie-button>
+    </div>
+
+    <script>
+
+        //vue component도 하나의 인스턴스로, 사용하면 중복되는 코드를 줄이고 재사용성을 높일 수 있다.
+        //컴포넌트는 전역등록/지역 등록 두 가지 방식으로 등록할 수 있다.
+        //Vue.component('태그이름',{옵션})
+
+        
+         Vue.component('hello-world',{
+             template:'<div>hello-world</div>'
+         });
+        
+        // //전역 등록
+        // Vue.component('kossie-button',{
+        //     //template 내부의 모든 코드는 하나의 root 태그 안에 들어있어야 한다
+        //                             //컴포넌트 안에서 컴포넌트를 사용할 수도 있다
+        //     template:'<div>{{name}}<br><hello-world></hello-world> <button @click="changeText">CLICK</button> </div>',
+
+        //     //이건 재사용을 할 컴포넌트인데 여기에 data객체를 넣으면
+        //     //그 주소가 연결돼서 여러 곳에서 컴포넌트를 사용할 경우
+        //     //한 곳의 데이터만 변경돼도 다른 곳의 데이터도 전부 바뀌기 때문에 객체가 아니라
+        //     //함수로 만들어줘야 한다
+        //     //data:{
+        //     //    name:'kossie'
+        //     //},
+        //     data(){
+        //         return { name : 'kossie' }
+        //     },
+        //     methods:{
+        //         changeText(){
+        //             this.name='kossie updated'; 
+
+        //         }
+        //     }
+        // });
+
+        //지역등록
+        const KossieButton ={
+            template:'<div>{{name}}<br><hello-world></hello-world> <button @click="changeText">CLICK</button> </div>',
+            data(){
+                return { name : 'kossie' }
+            },
+            methods:{
+                changeText(){
+                    this.name='kossie updated'; 
+
+                }
+            }
+        };
+        
+        const app = new Vue({
+
+            el:"#app",
+            components:{
+                'kossie-button':KossieButton
+            }
+        })
+
+        const app1 = new Vue ({
+
+            el:"#app-1",
+            components:{
+                'kossie-button':KossieButton
+            }
+        })
+
+
+    </script>
+    
+</body>
+</html>

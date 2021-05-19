@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+
+        <!--여기서 person은 people이 가진 배열안의 객체를 의미한다
+            in 대신에 of도 사용 가능
+        <div v-for="person in people">
+            {{person.name}} {{person.age}}
+        </div>
+
+        <hr>
+        
+        <div v-for="(person, index) in people">
+
+            {{person.name}} {{person.age}} {{index}}
+
+        </div>
+
+        <hr>-->
+
+        <!--key는 배열안에서 고유한 값들의 key를 의미한다
+        지금은 name도 age도 모두 고유값들이지만 만약 name이 중복값이 생긴다면
+        아래처럼 작성해서 하나의 고유값으로 만들어 key로 작성해준다
+        <div v-for="(person, index) in people" :key="person.name + '-' + person.age">
+            index는 항목이 중간에 삭제되면 변경되기 때문에 key로 쓰기 어렵다
+        <div v-for="(person, index) in people" :key="id">
+            {{person.name}} {{person.age}} {{index}}
+
+        </div>-->
+
+        <!-- 객체도 출력 가능-->
+        <ul id="v-for-object" class="demo">
+        <li v-for="value in object">
+          {{ value }}
+        </li>
+      </ul>
+        
+    </div>
+
+<script>
+/*
+    new Vue({
+
+        el:'#app',
+        data:{
+            people:[
+                    {id:1, name : 'a', age:20},
+                    {id:2, name : 'b', age:21},
+                    {id:3, name : 'c', age:22},
+                    {id:4, name : 'd', age:23},
+                    {id:5, name : 'e', age:24}
+
+                ],
+        },
+        methods:{
+            
+        }
+
+    })
+*/
+    new Vue({
+        el: '#v-for-object',
+        data: {
+            object: {
+            title: 'How to do lists in Vue',
+            author: 'Jane Doe',
+               publishedAt: '2016-04-10'
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
