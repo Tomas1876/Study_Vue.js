@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <!-- vue.js cdn -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <!--뷰 인스턴스 생성하기-->
+    <div id="app">
+        <!-- 기본적인 바인딩 코드
+        <form v-on:submit.prevent="submit" action="">
+                                    vue 이벤트를 제어하는 v-on:는 @로 대체 가능
+            <input type="text" :value="text" @keyup="updateText"><br>
+            {{ text }}<br>
+            <button type="submit">SUBMIT</button>
+
+        </form>
+        -->
+
+        <!-- 양방향 바인딩 코드-->
+        <form v-on:submit.prevent="submit" action="">
+            
+            <input type="text" v-model="h"><br>
+            {{ text }}<br>
+            <button type="submit">SUBMIT</button>
+
+        </form>
+    </div>
+
+    <script>
+        /*
+
+        기본적인 바인딩 코드
+        new Vue({
+
+            el:"#app",
+            data:{
+                text:'text'
+            },
+            methods:{
+                updateText(event){
+                   this.text = event.target.value;
+                }
+            }
+
+        })
+*/      
+        //양방향 바인딩 코드
+        new Vue({
+
+        el:"#app",
+        data:{
+            text:'text'
+        },
+        methods:{
+            //method가 필요없게 된다
+        }
+
+        })
+    </script>
+    
+</body>
+</html>

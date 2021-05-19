@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if와 v-show</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+
+        <!-- <button @click="toggleShow">Toggle</button> -->
+        <button @click="increaseNumber">Increase</button>{{number}}
+
+        <!--<template v-if="show">-->
+            <template v-if="number===1">
+ 
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+
+        </template>
+
+        <!--<div v-if="show">YES</div>-->
+        <div v-else-if="number===2">HI</div>
+        <div v-else>NO</div>
+
+        <!--v-if의 조건문이 true라면 해당 태그를 출력하고
+            아니라면 v-else를 출력
+
+            아래는 여러 개의 태그를 제어하는 법
+            template 태그는 브라우저 상에서는 확인되지 않는다
+        -->
+
+        <hr>
+
+        <div v-show="show">YES</div><br>
+        <button @click="toggleShow">Toggle</button>
+
+
+
+    </div>
+
+    <script>
+
+        new Vue({
+
+            el:'#app',
+            data:{
+                show:true, // false일 경우 div태그 자체가 화면에 출력되지 않는다
+                number:1
+                
+            },
+            methods:{
+                toggleShow(){
+                    this.show = !this.show;
+                },
+
+                increaseNumber(){
+                    this.number++;
+                }
+            }
+
+        })
+
+        //v-if로 화면출력을 제어할 경우, 조건이 거짓일 때 해당 태그는 아예 브라우저에서 확인이 불가능하지만
+        //v-show의 경우 태그가 없어지는 것이 아니라 display:none이 추가돼 보이지 않게 된다는 점이 다르다
+
+        //v-if는 초기값이 false일 경우 아무것도 하지 않는다 그러나 v-show는 초기값이 false더라도 렌더링은 해둔다
+        //v-if는 요소를 출력할 때마다 렌더링을 해야해서 토글비용이 높은 반면
+        //v-show는 요소를 무조건 렌더링 해두고 감추는 것이기 때문에 초기 렌더링 비용이 높은 대신 요소가 자주 바뀔수록 효율이 좋다
+
+    </script>
+</body>
+</html>

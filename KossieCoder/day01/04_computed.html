@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- vue.js cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- {{}} 안에는 자바스크립트 사용 가능
+        문자열을 split()으로 잘라주고, reverse()로 순서를 바꾼 다음
+        join()으로 다시 조립한 것
+        이 코드를 div 안에 직접 작성하지 않고 computed속성으로 뺄 수 있다
+       {{ message.split('').reverse().join('') }}
+        -->
+        <button @click="changeMessage">CLICK</button>
+        {{ reversedMessage }}
+        {{ reversedMessage }}
+        {{ reversedMessage }}
+ 
+
+    </div>
+
+    <script>
+
+        new Vue({
+
+            el:"#app",
+            data:{
+               message:'hello'
+            },
+            methods:{
+                changeMessage(){
+                    this.message = '코지코더';
+                }
+            },
+            computed:{ 
+                reversedMessage(){
+                    return this.message.split('').reverse().join('')
+                }
+            }
+
+        })
+
+        //computed에 작성한 reversedMessage()를 methods에 작성해도 똑같은 결과를 얻을 수 있지만
+        //computed는 캐싱을 하고 methods는 하지 않는다.
+        //뷰 인스턴스가 생성되면 data의 message가 값을 가지고 바로 computed의 속성이 발휘된다
+        //div 안에 {{ reversedMessage }} 로 접근할 때 이미 computed에 작성한 코드가 실행이 되고 저장이 되어 있는 것
+        //한 번 계산해서 저장한 값을 {{ reversedMessage }}를 작성한 횟수만큼 부르기만 하면 된다
+        //반면 함수를 사용하면 {{ reversedMessage }}를 작성할 때마다 계산을 해야된다
+
+    </script>
+</body>
+</html>

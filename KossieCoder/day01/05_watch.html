@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!-- 보통은 computed 속성을 사용하는 것이 더 적합하지만 computed를 사용할 수 없을 경우 등 watch속성이 필요할 때가 있다-->
+    <div id="app">
+
+        {{ message }}<br>
+        <button @click="changeMessage">CLICK</button><br>
+        {{updated}}
+
+    </div>
+
+    <script>
+
+        new Vue({
+
+            el: "#app",
+            data:{
+                message:'헬로우',
+                updated:'아니오'
+            },
+            methods:{
+                changeMessage(){
+                    this.message='코지코더'
+                }
+            },
+            computed:{
+                reversedMessage(){
+                    return this.message.split('').reverse().join('')
+                }
+            },
+            watch:{
+                //data의 message를 watch가 지켜보고 있다가 값이 변경되면
+                //newVal에는 새로운 값을, oldVal에는 예전 값이 넣는다
+                message(newVal, oldVal){
+                    console.log(newVal, oldVal);
+                    this.updated='네';
+                }
+            }
+
+        })
+
+    </script>
+    
+</body>
+</html>
